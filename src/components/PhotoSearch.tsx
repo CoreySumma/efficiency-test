@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
-import { TextField, Button, Box } from '@mui/material';
-import { createApi } from '../services/unsplash'; 
-import { Photos } from '../methods/search/types/response';
+import { useState } from "react";
+import { TextField, Button, Box } from "@mui/material";
+import { createApi } from "../services/unsplash";
+import { Photos } from "../methods/search/types/response";
 
-const unsplashApi = createApi({ accessKey: import.meta.env.VITE_APP_UNSPLASH_ACCESS_KEY });
+const unsplashApi = createApi({
+  accessKey: import.meta.env.VITE_APP_UNSPLASH_ACCESS_KEY,
+});
 
-const ImageSearch: React.FC = () => {
-  const [query, setQuery] = useState('');
+interface Props {
+  setPhotos: (photos: Photos["results"]) => void;
+}
+
+const PhotoSearch = ({ setPhotos } : Props) => {
+  const [query, setQuery] = useState("");
 
   const handleSearch = async () => {
     if (!query) return;
@@ -14,14 +20,15 @@ const ImageSearch: React.FC = () => {
       const data = await unsplashApi.search.getPhotos({ query });
       if (data.response) {
         const { results, total, total_pages } = data.response as Photos;
-        console.log(results); 
+        console.log(results);
+        setPhotos(results);
         console.log(`Total Results: ${total}`);
         console.log(`Total Pages: ${total_pages}`);
       } else {
-        console.error('Error:', data.errors);
+        console.error("Error:", data.errors);
       }
     } catch (error) {
-      console.error('Error fetching photos:', error);
+      console.error("Error fetching photos:", error);
     }
   };
 
@@ -40,4 +47,4 @@ const ImageSearch: React.FC = () => {
   );
 };
 
-export default ImageSearch;
+export default PhotoSearch;

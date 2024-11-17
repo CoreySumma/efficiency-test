@@ -1,8 +1,12 @@
 import "./App.css";
-import ImageSearch from "./components/ImageSearch";
+import PhotoSearch from "./components/PhotoSearch";
 import { Box } from "@mui/material";
+import { useState } from "react";
+import { Photos } from "./methods/search/types/response";
+import DisplayPhotos from "./components/DisplayPhotos";
 
 function App() {
+  const [photos, setPhotos] = useState<Photos['results']>([]);
   return (
     <>
       <Box sx={{ textAlign: "center" }}>
@@ -23,8 +27,9 @@ function App() {
           mt: 15,
         }}
       >
-        <ImageSearch />
+        <PhotoSearch setPhotos={setPhotos} />
       </Box>
+      {photos && photos.length > 0 && <DisplayPhotos photos={photos} />}
     </>
   );
 }
