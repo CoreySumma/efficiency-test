@@ -11,7 +11,7 @@ interface Props {
   setPhotos: (photos: Photos["results"]) => void;
 }
 
-const PhotoSearch = ({ setPhotos } : Props) => {
+const PhotoSearch = ({ setPhotos }: Props) => {
   const [query, setQuery] = useState("");
 
   const handleSearch = async () => {
@@ -19,11 +19,8 @@ const PhotoSearch = ({ setPhotos } : Props) => {
     try {
       const data = await unsplashApi.search.getPhotos({ query });
       if (data.response) {
-        const { results, total, total_pages } = data.response as Photos;
-        console.log(results);
+        const { results } = data.response as Photos;
         setPhotos(results);
-        console.log(`Total Results: ${total}`);
-        console.log(`Total Pages: ${total_pages}`);
       } else {
         console.error("Error:", data.errors);
       }
@@ -33,12 +30,26 @@ const PhotoSearch = ({ setPhotos } : Props) => {
   };
 
   return (
-    <Box display="flex" alignItems="center" gap={2} p={2}>
+    <Box display="flex" alignItems="center" gap={2}>
       <TextField
         label="Search Images"
         variant="outlined"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        sx={{
+          "& .MuiInputBase-input": {
+            color: "white",
+          },
+          "& .MuiInputLabel-root": {
+            color: "white",
+          },
+          "& .MuiOutlinedInput-notchedOutline": {
+            borderColor: "white",
+          },
+          "&:hover .MuiOutlinedInput-notchedOutline": {
+            borderColor: "lightgray",
+          },
+        }}
       />
       <Button variant="contained" color="primary" onClick={handleSearch}>
         Search

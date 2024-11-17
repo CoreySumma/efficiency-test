@@ -24,7 +24,7 @@ function App() {
           alignItems: "center",
           justifyContent: "center",
           textAlign: "center",
-          mt: 15,
+          mt: 6,
         }}
       >
         <PhotoSearch setPhotos={setPhotos} />

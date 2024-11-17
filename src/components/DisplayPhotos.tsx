@@ -3,9 +3,22 @@ import { Photos } from "../methods/search/types/response";
 
 // TODO switch to grid (maybe)
 
-export default function DisplayPhotos({ photos }: { photos: Photos['results'] }) {
+export default function DisplayPhotos({
+  photos,
+}: {
+  photos: Photos["results"];
+}) {
   return (
-    <Box display="flex" flexWrap="wrap" gap={2} p={2}>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexWrap: "wrap",
+        gap: 4,
+        mt: 10,
+      }}
+    >
       {photos.map((photo) => (
         <img
           key={photo.id}
