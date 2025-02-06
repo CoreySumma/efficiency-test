@@ -6,15 +6,16 @@ import { Photos } from "./methods/search/types/response";
 import DisplayPhotos from "./components/DisplayPhotos";
 
 function App() {
-  const [photos, setPhotos] = useState<Photos['results']>([]);
+  const [photos, setPhotos] = useState<Photos["results"]>([]);
   return (
     <>
       <Box sx={{ textAlign: "center" }}>
-        <h1>Image Efficiency Test</h1>
+        <h2>Performance Comparison: Client vs. Server Rendering</h2>
       </Box>
       <Box sx={{ textAlign: "center" }}>
         <p>
-          We are going to test different loading methods and fetch techniques
+          Real-time analysis of rendering strategies with Unsplash API
+          integration
         </p>
       </Box>
       <Box

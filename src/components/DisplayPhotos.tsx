@@ -24,6 +24,7 @@ export default function DisplayPhotos({
           key={photo.id}
           src={photo.urls.small}
           style={{ width: 300, height: 300, objectFit: "cover" }}
+          loading="lazy"
         />
       ))}
     </Box>
